@@ -38,15 +38,20 @@ app.post("/todos/new", (req, res) => {
 });
 
 app.delete("/todos/delete/:id", async (req, res) => {
-  const result = await Todo.findByIdAndDelete(req.params.id);
-  res.json(result);
+  const result = await Todo.findByIdAndRemove(req.params.id);
+  res.json({ result });
 });
 
-app.put("/todos/complete/:id", async (req, res) => {
+app.get("/todos/complete/:id", async (req, res) => {
   const todo = await Todo.findById(req.params.id);
-  todo.complete = !todo.complete;
-  todo.save();
-  res.json(todo);
+  console.log(todo);
+  if (todo === !null) {
+    todo.complete = !todo.complete;
+    todo.save();
+    res.json(todo);
+  } else {
+    console.log("cash2");
+  }
 });
 
 app.listen(5000, () => console.log("Server started on port 5000"));

@@ -8,9 +8,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+//! MongoDB username and password input
 mongoose
   .connect(
-    "mongodb+srv://ilkayus:123asd123@cluster0.7n3oe.mongodb.net/toDoApp?retryWrites=true&w=majority",
+    "mongodb+srv://<useName></useName>:</password>@cluster0.7n3oe.mongodb.net/toDoApp?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -54,4 +55,5 @@ app.get("/todos/complete/:id", async (req, res) => {
   }
 });
 
+//!? Server start port
 app.listen(5000, () => console.log("Server started on port 5000"));
